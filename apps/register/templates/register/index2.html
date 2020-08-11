@@ -1,0 +1,211 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Socialogistic Stuff</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"> {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/style.css' %}"  rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme hfiles -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+
+<!-- //web font -->
+<style>
+	.center {
+  display: block;
+  margin-left: 40px;
+  margin-top: -90px;
+  width:60%;
+		border-radius: 59%;
+}
+
+</style>
+    <script>
+
+            // Function to check Whether both passwords
+            // is same or not.
+            function checkPassword(form) {
+                password = form.password.value;
+                confirm_password = form.confirm_password.value;
+
+                // If password not entered
+                if (password == '')
+                    alert ("Please enter Password");
+
+                // If confirm password not entered
+                else if (confirm_password == '')
+                    alert ("Please enter confirm password");
+
+                // If Not same return False.
+                else if (password != confirm_password) {
+                    alert ("\nPassword did not match: Please try again...")
+                    return false;
+                }
+
+                // If same return True.
+                else{
+                    alert("Password Match: Welcome to Sociologistic Stuff!")
+                    return true;
+                }
+            }
+        </script>
+
+
+</head>
+
+<body style="background:#3f2f60;">
+
+
+<div style="background-color:black; padding-top: 19px;">
+
+    <table>
+        <tr>
+    <td>
+         <img  src="{% static 'images/sc4.jpg' %}"  class="center" height="150" width="400">
+
+    </td>
+</tr>
+        <tr>
+            <td>
+            <h2 style="margin-top:0px; margin-left: 10px; color: khaki; font-family: 'Chalkboard SE'; font-size: xx-large;">Sociologistic Stuff</h2>
+        </td><BR>
+            <h1>Welcome to Sociologistic Stuff </h1>
+        </tr>
+
+    </table>
+	</div>    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <h4 class="card-header text-center">Register</h4>
+                    <div class="card-block" style="margin-top: -10px;">
+                        <form method="post" action="/register" onSubmit = "return checkPassword(this)">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input style="color: black; border-color: grey;" name="first_name" type="text" class="form-control form-control-danger">
+                                {% if messages %}
+                                {%for message in messages %}
+                                {%if "first_name" in message.tags %}
+                                <div class="form-group has-danger">
+                                    <div class="form-control-feedback">{{message}}</div>
+                                  </div>
+                                {%endif%} {%endfor%} {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input style="color: black; border-color: grey;" name="last_name" type="text" class="form-control">
+                                {% if messages %}
+                                {%for message in messages %}
+                                {%if "last_name" in message.tags %}
+                                <div class="form-group has-danger">
+                                    <div class="form-control-feedback">{{message}}</div>
+                                  </div>
+                                {%endif%} {%endfor%} {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input  style="color: black; border-color: grey;" name="email" type="email" class="form-control">
+                                {% if messages %}
+                                {%for message in messages %}
+                                {%if "email" in message.tags %}
+                                <div class="form-group has-danger">
+                                    <div class="form-control-feedback">{{message}}</div>
+                                  </div>
+                                {%endif%} {%endfor%} {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input style="color: black; border-color: grey;" name="password" type="password" class="form-control">
+                                {% if messages %}
+                                {%for message in messages %}
+                                {%if "password" in message.tags %}
+                                <div class="form-group has-danger">
+                                    <div class="form-control-feedback">{{message}}</div>
+                                  </div>
+                                {%endif%} {%endfor%} {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input style="color: black; border-color: grey;" name="confirm_password" type="password" class="form-control">
+                                {% if messages %}
+                                {%for message in messages %}
+                                {%if "confirm_password" in message.tags %}
+                                <div class="form-group has-danger">
+                                    <div class="form-control-feedback">{{message}}</div>
+                                  </div>
+                                {%endif%} {%endfor%} {% endif %}
+                            </div>
+                            <div class="mx-auto text-center">
+                                <input style="color: black; border-color: grey;" type="submit" value="Create Account" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <h4 class="card-header text-center">Login</h4>
+                    <div class="card-block">
+                        <form method="post" action="/login">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input style="color: black; border-color: grey;" name="login_email" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input style="color: black; border-color: grey;" name="login_password" type="password" class="form-control">
+                            <br>
+
+                                                                {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert"></a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
+                            </div>
+
+                            <div class="mx-auto text-center">
+                                <input style="color: black; border-color: grey;"  type="submit" value="Login" class="btn btn-primary">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+    </div>
+    </div>
+</body>
+
+
+</html>
+
+
+
+
